@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <center><a href="{{path('create_champ')}}" class="btn btn-info">Créer un Championnat</a></center>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Mes Championnats :</h4>
+            <div class="list-group">
+                {% for championnat in championnats|sort|reverse %}
+                {% if championnat.close == 1 %}
+                <a href="{{path('championnat', {'id' : championnat.id} )}}"
+                    class="list-group-item list-group-item-action list-group-item-info">
+                    Championnat {{championnat.id}} <i class=" far fa-check-square"></i>
+                </a>
+                {% else %}
+                <a href="{{path('championnat', {'id' : championnat.id} )}}"
+                    class="list-group-item list-group-item-action">
+                    Championnat {{championnat.id}}
+                </a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="container">
+        {{form_start(form)}}
+        <div class="row">
+            <div class="col s12">Journée</div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                {{ form_row(form.journee, {'label':'Journée'}) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.Joueurs1, {'label':'Joueur 1'}) }}
+            </div>
+            <div class="col-md-1">
+                {{ form_row(form.resultat_j1, {'label':'resultat'}) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.Joueurs2, {'label':'Joueur 2'}) }}
+            </div>
+            <div class="col-md-1">
+                {{ form_row(form.resultat_j2, {'label':'resultat'}) }}
+            </div>
+        </div>
+        <button type='submit' class="btn btn-primary">Créer</button>
+        {{form_end(form)}}
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css">
+{% endblock %}
+
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').select2();
+
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {{form_start(form)}}
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_row(form.nbr_jours, {'label':'Nombre de journée'}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_row(form.users) }}
+                </div>
+            </div>
+            <button type='submit' class="btn btn-primary">Créer</button>
+            <a href="{{path('admin')}}" class="btn btn-danger">Retour</a>
+            {{form_end(form)}}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css">
+{% endblock %}
+
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').select2();
+
+    });
+</script>
+{% endblock %}

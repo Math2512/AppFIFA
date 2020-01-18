@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{vich_uploader_asset(user, 'imageFile') | imagine_filter('medium')}}" alt=""
+                style="height:200px; width:auto" class="card-img-top">
+        </div>
+        <div class="col-md-8">
+            <div class="col-md-12">
+                <h2>{{user.username}} <a href="{{path('updateUser', {'id' : user.id} )}}"><i class="fa fa-pencil"
+                            aria-hidden="true"></i>
+                    </a></h2>
+            </div>
+            <div class="col-md-12" style="color:gold">
+                {% if user.victory != null %}
+                {% set val = user.victory - 1 %}
+                {% for i in 0..val  %}
+                <i class="fas fa-star"></i>
+                {% endfor %}
+                {% endif %}
+
+                <!-- <i class="fas fa-star-of-david"></i> -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

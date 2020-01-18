@@ -1,0 +1,248 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\Classement',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\Classement',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\ClassementRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'mj' => [
+                        'fieldName' => 'mj',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'mj',
+                    ],
+                    'g' => [
+                        'fieldName' => 'g',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'g',
+                    ],
+                    'n' => [
+                        'fieldName' => 'n',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'n',
+                    ],
+                    'bp' => [
+                        'fieldName' => 'bp',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'bp',
+                    ],
+                    'bc' => [
+                        'fieldName' => 'bc',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'bc',
+                    ],
+                    'db' => [
+                        'fieldName' => 'db',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'db',
+                    ],
+                    'pts' => [
+                        'fieldName' => 'pts',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'pts',
+                    ],
+                    'd' => [
+                        'fieldName' => 'd',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'd',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'mj' => 'mj',
+                    'g' => 'g',
+                    'n' => 'n',
+                    'bp' => 'bp',
+                    'bc' => 'bc',
+                    'db' => 'db',
+                    'pts' => 'pts',
+                    'd' => 'd',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'mj' => 'mj',
+                    'g' => 'g',
+                    'n' => 'n',
+                    'bp' => 'bp',
+                    'bc' => 'bc',
+                    'db' => 'db',
+                    'pts' => 'pts',
+                    'd' => 'd',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'classement',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'championnat' => [
+                        'fieldName' => 'championnat',
+                        'joinColumns' => [
+                            [
+                                'name' => 'championnat_id',
+                                'unique' => false,
+                                'nullable' => false,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [
+                            'persist',
+                            'remove',
+                        ],
+                        'inversedBy' => 'classement',
+                        'targetEntity' => 'App\\Entity\\Championnats',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Classement',
+                        'isCascadeRemove' => true,
+                        'isCascadePersist' => true,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'championnat_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'championnat_id' => 'championnat_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'championnat_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'user' => [
+                        'fieldName' => 'user',
+                        'joinColumns' => [
+                            [
+                                'name' => 'user_id',
+                                'unique' => false,
+                                'nullable' => false,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [
+                            'persist',
+                            'remove',
+                        ],
+                        'inversedBy' => 'classement',
+                        'targetEntity' => 'App\\Entity\\User',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Classement',
+                        'isCascadeRemove' => true,
+                        'isCascadePersist' => true,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'user_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'user_id' => 'user_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'user_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);

@@ -1,0 +1,206 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\Matchs',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\Matchs',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\MatchsRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'resultat_j1' => [
+                        'fieldName' => 'resultat_j1',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'resultat_j1',
+                    ],
+                    'resultat_j2' => [
+                        'fieldName' => 'resultat_j2',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'resultat_j2',
+                    ],
+                    'journee' => [
+                        'fieldName' => 'journee',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'journee',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'resultat_j1' => 'resultat_j1',
+                    'resultat_j2' => 'resultat_j2',
+                    'journee' => 'journee',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'resultat_j1' => 'resultat_j1',
+                    'resultat_j2' => 'resultat_j2',
+                    'journee' => 'journee',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'matchs',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'Joueurs1' => [
+                        'fieldName' => 'Joueurs1',
+                        'joinColumns' => [
+                            [
+                                'name' => 'joueurs1_id',
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'matchs',
+                        'targetEntity' => 'App\\Entity\\User',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Matchs',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'joueurs1_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'joueurs1_id' => 'joueurs1_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'joueurs1_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'Joueurs2' => [
+                        'fieldName' => 'Joueurs2',
+                        'joinColumns' => [
+                            [
+                                'name' => 'joueurs2_id',
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'matchs',
+                        'targetEntity' => 'App\\Entity\\User',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Matchs',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'joueurs2_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'joueurs2_id' => 'joueurs2_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'joueurs2_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'championnat' => [
+                        'fieldName' => 'championnat',
+                        'joinColumns' => [
+                            [
+                                'name' => 'championnat_id',
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'matchs',
+                        'targetEntity' => 'App\\Entity\\Championnats',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Matchs',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'championnat_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'championnat_id' => 'championnat_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'championnat_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);

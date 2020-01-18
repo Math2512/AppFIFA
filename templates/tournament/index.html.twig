@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<style>
+    .jumbotron {
+        background-image: url("{{ asset('images/deco/fifa.jpg') }}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+</style>
+<div class="jumbotron fluid" style="color:#FFF">
+    <center>
+        <p style="font-size: 4em;font-weight:bold"><span class="badge badge-pill badge-primary">FIFA IT</span></p>
+    </center>
+</div>
+{% if app.user != '' %}
+<div class="container">
+    <h3>Mes championnats</h3>
+    {% for classement in classements %}
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col">J</th>
+                <th scope="col">MJ</th>
+                <th scope="col">G</th>
+                <th scope="col">N</th>
+                <th scope="col">D</th>
+                <th scope="col">BP</th>
+                <th scope="col">BC</th>
+                <th scope="col">DB</th>
+                <th scope="col">Pts</th>
+                <th scope="col">Détail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in classement %}
+
+            <tr>
+                <th>{{ data.user.username }}</th>
+                <th>{{ data.mj }}</th>
+                <td>{{ data.g }}</td>
+                <td>{{ data.n }}</td>
+                <td>{{ data.d }}</td>
+                <td>{{ data.bp }}</td>
+                <td>{{ data.bc }}</td>
+                <td>{{ data.db }}</td>
+                <td>{{ data.pts }}</td>
+                <td><a href="{{path('championnat', {'id' : data.championnat.id} )}}"><i class="fa fa-eye"
+                            aria-hidden="true"></i>
+                    </a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+</div>
+{% else %}
+<div class="row">
+    <div class="col-md-12">
+        <center><a href="{{path('inscription')}}" class="btn btn-info">Inscription</a></center>
+        <center><a href="{{path('security_login')}}" class="btn btn-success">Connexion</a></center>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

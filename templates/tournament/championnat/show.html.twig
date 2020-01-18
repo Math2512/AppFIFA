@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+
+    <center>
+        <h2>CHAMPIONNAT ID : {{championnat.id}} <small>Journée
+                {% if journee.0.journee is defined %}{{journee.0.journee}}{% else %}0{% endif %}/{{championnat.nbrjours}}</small>
+        </h2>
+    </center>
+    {% for message in app.flashes('error') %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-dismissible alert-danger">
+                <i class="fas fa-exclamation-triangle"></i> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% if championnat.close != 1 %}
+    <a class="btn btn-success btn btn-block col-md-2 offset-md-10" role="button" aria-disabled="true" tabindex="-1"
+        href="{{ path('closeChampionnat', {'id' : championnat.id} )}}">
+        Terminer championnat
+    </a>
+    {% else %}
+    <h4 class="text-info" style="text-align: center;">Championnat Fini</h4>
+    {% endif %}
+
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Joueurs :</h5>
+        </div>
+        {% for user in users %}
+
+        <div class="col-md-2">
+            <div class="card" style="height: 12rem;">
+                <img src="{{vich_uploader_asset(user, 'imageFile') | imagine_filter('medium')}}" alt=""
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">{{user.username}}</h5>
+                    <p class="card-text" style="text-align: center;">
+                        {% if user.victory != null %}
+                        {% set val = user.victory - 1 %}
+                        {% for i in 0..val  %}
+                        <i style="color:gold" class="fas fa-star"></i>
+                        {% endfor %}
+                        {% endif %}
+                        <!-- <i class="fas fa-star-of-david"></i> -->
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <h5>Match joués :</h5>
+            {% if championnat.close != 1 %}
+            <a class="btn btn-warning btn-lg btn-block col-md-12" role="button" aria-disabled="true" tabindex="-1"
+                href="{{ path('editMatch', {'id' : championnat.id} )}}">Ajouter un match</a>
+            {% endif %}
+            <table class="table table-hover table-striped table-bordered table-sm col-md-12" style="text-align:center">
+                <thead>
+                    <tr>
+                        <th>
+                            Journée
+                        </th>
+                        <th>
+                            J1
+                        </th>
+                        <th>
+                            Résultat J1
+                        </th>
+                        <th>
+                            Résultat J2
+                        </th>
+                        <th>
+                            J2
+                        </th>
+                        <th>
+                            Edit
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for match in matchs %}
+                    <tr>
+                        <td>
+                            {{match.journee}}
+                        </td>
+                        <td>
+                            {{match.joueurs1.username}}
+                        </td>
+                        <td>
+                            {% if match.resultatj1 > match.resultatj2 %}
+                            {% set color ="green" %}
+                            {% else %}
+                            {% set color ="red" %}
+                            {% endif %}
+                            <span style="color:{{ color}}">{{match.resultatj1}}</span>
+                        </td>
+                        <td>
+                            {% if match.resultatj1 < match.resultatj2 %}
+                            {% set color ="green" %}
+                            {% else %}
+                            {% set color ="red" %}
+                            {% endif %}
+                            <span style="color:{{ color}}">{{match.resultatj2}}</span>
+                        </td>
+                        <td>
+                            {{match.joueurs2.username}}
+                        </td>
+                        <td>
+                            <a href="{{path('deleteMatch', {'id' : match.id} )}}" class="href"><i
+                                    class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <h5>Classement :</h5>
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">J</th>
+                            <th scope="col">MJ</th>
+                            <th scope="col">G</th>
+                            <th scope="col">N</th>
+                            <th scope="col">D</th>
+                            <th scope="col">BP</th>
+                            <th scope="col">BC</th>
+                            <th scope="col">DB</th>
+                            <th scope="col">Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in classement %}
+                        <tr>
+                            <th>{{ data.user.username }}</th>
+                            <th>{{ data.mj }}</th>
+                            <td>{{ data.g }}</td>
+                            <td>{{ data.n }}</td>
+                            <td>{{ data.d }}</td>
+                            <td>{{ data.bp }}</td>
+                            <td>{{ data.bc }}</td>
+                            <td>{{ data.db }}</td>
+                            <td>{{ data.pts }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css">
+{% endblock %}
+
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').select2();
+
+    });
+
+</script>
+{% endblock %}

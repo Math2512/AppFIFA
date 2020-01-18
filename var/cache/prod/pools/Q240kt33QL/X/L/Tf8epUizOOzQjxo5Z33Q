@@ -1,0 +1,181 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\Championnats',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\Championnats',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\ChampionnatsRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'nbr_jours' => [
+                        'fieldName' => 'nbr_jours',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'nbr_jours',
+                    ],
+                    'close' => [
+                        'fieldName' => 'close',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'close',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'nbr_jours' => 'nbr_jours',
+                    'close' => 'close',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'nbr_jours' => 'nbr_jours',
+                    'close' => 'close',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'championnats',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'users' => [
+                        'fieldName' => 'users',
+                        'joinTable' => [
+                            'name' => 'championnats_user',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'championnats_id',
+                                    'referencedColumnName' => 'id',
+                                    'onDelete' => 'CASCADE',
+                                ],
+                            ],
+                            'inverseJoinColumns' => [
+                                [
+                                    'name' => 'user_id',
+                                    'referencedColumnName' => 'id',
+                                    'onDelete' => 'CASCADE',
+                                ],
+                            ],
+                        ],
+                        'targetEntity' => 'App\\Entity\\User',
+                        'mappedBy' => null,
+                        'inversedBy' => 'championnats',
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 8,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Championnats',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'joinTableColumns' => [
+                            'championnats_id',
+                            'user_id',
+                        ],
+                        'isOnDeleteCascade' => true,
+                        'relationToSourceKeyColumns' => [
+                            'championnats_id' => 'id',
+                        ],
+                        'relationToTargetKeyColumns' => [
+                            'user_id' => 'id',
+                        ],
+                    ],
+                    'matchs' => [
+                        'fieldName' => 'matchs',
+                        'mappedBy' => 'championnat',
+                        'targetEntity' => 'App\\Entity\\Matchs',
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 4,
+                        'inversedBy' => null,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\Championnats',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                    'classement' => [
+                        'fieldName' => 'classement',
+                        'targetEntity' => 'App\\Entity\\Classement',
+                        'joinColumns' => [],
+                        'mappedBy' => 'championnat',
+                        'inversedBy' => null,
+                        'cascade' => [
+                            'persist',
+                            'remove',
+                        ],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 1,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\Championnats',
+                        'isCascadeRemove' => true,
+                        'isCascadePersist' => true,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);
